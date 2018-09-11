@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Bitcoin</title>
+   </head>
+   <!--css-->
+   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css"> -->
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css">
+   <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.bootstrap.min.css">
+      -->
+   <!--end css -->
+
+   <!--js-->
+   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+   <script type="text/javascript"  src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script> -->
+   <!-- <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.1/js/responsive.bootstrap.min.js"></script> -->
+   <!--end js-->
+   <style type="text/css">
+      #example_filter input{ border:1px solid #ccc border-radius:4px; padding: 6px 12px }dataTables_length}
+      .tab-content {
+      padding: 20px;
+      > .tab-pane {
+      display: none;
+      }
+      > .active {
+      display: block;
+      }
+      }
+   </style>
+   <body>
+      <div class="container">
+         <h2>Cryptocurrency Market Capitalizations</h2>
+         <div class="panel panel-default">
+            <div class="panel-heading">Cryptocurrency Market Capitalizations</div>
+            <div class="panel-body">
+               <div>
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+                     <li role="presentation"><a href="#profile" aria-controls="profile"  role="tab" data-toggle="tab">Profile</a></li>
+                     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+                     <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+                  </ul>
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                     <div role="tabpanel" class="tab-pane active" id="home">
+                        <div class="row">
+                           <div class="col-md-4"> </div>
+                           <div class="col-md-4">
+                              <!--list button-->
+                              <div id="currency-switch" class="btn-group" style="padding: 20px 12px">
+                                 <button id="currency-switch-button" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                 USD <span class="caret"></span></button>
+                                 <ul class="dropdown-menu text-center" role="menu">
+                                    <li class="pointer" data-fiat-item=""><a class="price-toggle" data-currency="usd" data-fiat="">DKK</a></li>
+                                    <li class="divider" data-fiat-item=""></li>
+                                    <li class="pointer"><a class="price-toggle" data-currency="usd">XRP</a></li>
+                                    <li class="divider"></li>
+                                    <li class="pointer"><a class="price-toggle" data-currency="btc" data-currencyid="bitcoin">BTC</a></li>
+                                    <li class="divider"></li>
+                                    <li class="pointer"><a class="price-toggle" data-currency="eth" data-currencyid="ethereum">ETH</a></li>
+                                    <li class="divider"></li>
+                                    <li class="pointer"><a class="price-toggle" data-currency="xrp" data-currencyid="ripple">XRP</a></li>
+                                    <li class="divider"></li>
+                                    <li class="pointer"><a class="price-toggle" data-currency="bch" data-currencyid="bitcoin-cash">BCH</a></li>
+                                    <li class="divider"></li>
+                                    <li class="pointer"><a class="price-toggle" data-currency="ltc" data-currencyid="litecoin">LTC</a></li>
+                                 </ul>
+                              </div>
+                              <!-- end list button --> 
+                           </div>
+                           <div class="col-md-4"> </div>
+                        </div>
+                        <!--list table-->
+                        <table id="example" class="display" style="width:100%" >
+                           <thead>
+                              <tr>
+                                 <th>#</th>
+                                 <th>name</th>
+                                 <th>Market Cap</th>
+                                 <th>Price</th>
+                                 <th>Volume(24H)</th>
+                                 <th>Criculating Supply</th>
+                                 <th>Change(24h)</th>
+                              </tr>
+                           </thead>
+                           <tfoot>
+                              <tr>
+                                 <th>#</th>
+                                 <th>name</th>
+                                 <th>Market Cap</th>
+                                 <th>Price</th>
+                                 <th>Volume(24H)</th>
+                                 <th>Criculating Supply</th>
+                                 <th>Change(24h)</th>
+                              </tr>
+                           </tfoot>
+                        </table>
+                        <!--end list table-->
+                     </div>
+                     <div role="tabpanel" class="tab-pane" id="profile">
+                        <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+                        <div class="row">
+                           <div class="col-xs-6 col-md-4">
+                              <div class="col-md-12"><span id="namecoin" style="font-size: 30px"></span><span style="font-weight: bold;color: #999" id="symbolcoin"></span><span id="imagecoin"></span></div>
+                              <div class="col-md-12">
+                                 <ul class="list-unstyled">
+                                    <li><span class="glyphicon glyphicon-link text-gray" title="Website"></span> <a href="https://bitcoin.org/" target="_blank" rel="noopener">Website</a></li>
+                                    <li><span class="glyphicon glyphicon-link text-gray" title="Website"></span> <a href="https://bitcoin.com/" target="_blank" rel="noopener">Website 2</a></li>
+                                    <li><span class="glyphicon glyphicon-search text-gray" title="Explorer"></span> <a href="https://blockchain.info/" target="_blank" rel="noopener">Explorer</a></li>
+                                    <li><span class="glyphicon glyphicon-search text-gray" title="Explorer"></span> <a href="https://live.blockcypher.com/btc/" target="_blank" rel="noopener">Explorer 2</a></li>
+                                    <li><span class="glyphicon glyphicon-search text-gray" title="Explorer"></span> <a href="https://blockchair.com/bitcoin/blocks" target="_blank" rel="noopener">Explorer 3</a></li>
+                                    <li><span class="glyphicon glyphicon-list text-gray" title="Message Board"></span> <a href="https://bitcointalk.org" target="_blank" rel="noopener">Message Board</a></li>
+                                    <li><span class="glyphicon glyphicon-list text-gray" title="Message Board"></span> <a href="https://forum.bitcoin.com/" target="_blank" rel="noopener">Message Board 2</a></li>
+                                    <li><span class="glyphicon glyphicon-hdd text-gray" title="Source Code"></span> <a href="https://github.com/bitcoin/" target="_blank" rel="noopener">Source Code</a></li>
+                                    <li><span class="glyphicon glyphicon glyphicon-star text-gray" title="Rank"></span>
+                                       <small><span class="label label-success"> Rank 1</span></small>
+                                    </li>
+                                    <li><span class="glyphicon glyphicon glyphicon-tag text-gray" title="Tags"></span>
+                                       <small>
+                                       <span class="label label-warning">Coin</span>
+                                       <span class="label label-warning">Mineable</span>
+                                       </small>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="col-xs-12 col-md-8">
+                              <div class="row">
+                                 <div class="col-md-6"> <span id="Price" style="font-size: 30px">..</span> <span style="font-weight: bold;color: #999" id="price_syl">.</span> <span style="font-size: 20px; color: #093 " id="change_24h">..</span></div>
+                                 <div class="col-md-4">
+                                    <div  style="padding: 3px 5px; margin: 5px" class="btn btn-primary"><img class="glyphicon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAABmJLR0QAAAAAAAD5Q7t/AAAACXBI&#10;WXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4gMEEy4Wvilc+gAAABl0RVh0Q29tbWVudABDcmVhdGVk&#10;IHdpdGggR0lNUFeBDhcAAAFGSURBVCjPdZE9SEJRGIafk2ZYomlJ1lCQGgZBTS5uElZQELREe0tT&#10;zRJNLrm0O7eGVFuDLQ5daIiCBBUMQQPFSunmz5XToGXJ9V3O8D0c3u/5RDCqoBurQx74NGJKlRYI&#10;gCFdcNQqD3fmmG/Uf0F92DAmd7fdbNlUbtPNf6M+2CRDm172Z4w08mWSKoNgg/SvLnDkHQY0lKd3&#10;3v5UADB2HiE9fg/hFTMmAE0lpZpwO5EANJpkq21BMKqwd1mRRTk4hceUXIsqckg4XTK8YcelL5Ba&#10;IU/kpqPPKCtlTs9rWLqFppbdHC+NAND8KBONv/Lc7nQ30tZEvqR1/zHLwHoHpF4lFs+RVAd4FtOT&#10;BCYA7Yur6wwXJSkGqBNy0WdnlhZ3iQxnubbo79+DDRZCHgPp+yyRh7rusj3YYWO8+MJJosZn3zF+&#10;8g2ER4yYQWUs0AAAAABJRU5ErkJggg==&#10;"> Buy Bitcoin</div>
+                                 </div>
+                                 <div class="col-md-2"></div>
+                              </div>
+                              <div class="row">
+                                 <div class="col-md-12">
+                                    <table class="table table-striped">
+                                       <thead>
+                                          <tr>
+                                             <th>Market Cap</th>
+                                             <th>Volume (24h)</th>
+                                             <th>Circulating Supply</th>
+                                             <th>Max Supply</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <tr>
+                                             <td id="MarketCap">..</td>
+                                             <td id="Volume"></td>
+                                             <td id="Circulating">...</td>
+                                             <td id="MaxSupply">...</td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              </div>
+                                   
+                           </div>
+                        </div>
+                     </div>
+                     <div role="tabpanel" class="tab-pane" id="messages">...</div>
+                     <div role="tabpanel" class="tab-pane" id="settings">...</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!---end modal---->
+      <!--view table-->
+      <!--end view table-->
+      
+      <script type="text/javascript">
+         var ISD="USD" // var gobal
+         load() // load data in coincomarket with USD''
+               	function appendhtml(datajs)
+               	{
+               		var data=datajs
+               		if(data=='')
+               		{
+               			alert('ID is _blank')
+                  		return;
+               		}
+               		$.each(data, function(i, v) {
+         
+               			console.log(v);
+                 			return; 
+             			});
+               	}
+                  function activaTab(tab){
+                      $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+                  };
+          		function reset_text()
+          		{
+         
+         
+          			$("#price_syl").text(' ')
+          			$("#change_24h").text(' ')
+          			$("#Price").text(' ')
+          			$("#namecoin").text(' ')
+          			$("#symbolcoin").text(' ')
+          			$("#MarketCap").text(' ')
+          			$("#Circulating").text(' ')
+          			$("#MaxSupply").text(' ')
+         
+         
+          		} 
+          		function set_text(datajs)
+          		{
+          			
+          			$("#price_syl").text('USD')
+          			$("#change_24h").text('('+datajs[0].percent_change_24h +'%)')
+          			$("#Price").text('$ '+datajs[0].price_usd)
+          			$("#namecoin").text(datajs[0].name);
+                  	$("#symbolcoin").text('('+datajs[0].symbol+')');
+                  	$("#MarketCap").text('$ '+datajs[0].market_cap_usd+' USD')
+                  //	$("#Volume").text(''+datajs[0][24h_volume_usd].text+' USD')
+                  	console.log(datajs[0]['24h_volume_usd'].text)
+                  	$("#Circulating").text(''+datajs[0].available_supply+' '+datajs[0].symbol)
+                  	$("#MaxSupply").text(''+datajs[0].max_supply+' '+datajs[0].symbol)
+          		}
+                  function Getdetail(idsy,datajs)
+                  {
+                  	
+                  	var idms=idsy
+                  	if(idms ==' ')
+                  	{	
+                  		alert('ID is _blank')
+                  		return;
+                  	}
+                  $.ajax({
+                      type: "GET", 
+                      url: "/cryptocurrencie/getdetail",
+                      data:{
+                     id: idms,
+                     authenticity_token: window._token
+                 	},
+                      dataType:'json',
+                      success: function (data, text) {
+                       strhtml=appendhtml(data.DISPLAY);// append html
+                      },
+                      error: function (request, status, error) {
+                      alert(request.responseText);
+                      }
+                  	});	
+                  }
+            $('#currency-switch ul li').on('click', function (e) {
+                  	    		var str=$(this).text();
+                  	    		search_coin(str)
+         					}) 
+         function load()
+         {
+          $(document).ready(function() {         	    
+                      var table = $('#example').DataTable( {
+                          "ajax": '/cryptocurrencie/load',
+                          select: true,
+                          "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                          "columns": [
+                              { "data": "rank" },
+                              { "data": "name" },
+                              { "data": "market_cap_usd",  render: function ( data, type, row ) {
+                if ( type === 'display' ) {
+                    var numberRenderer = $.fn.dataTable.render.number( ',', '.', 0, '$' ).display;
+                    return numberRenderer( data );
+                }
+                return data;
+            }  },
+                              { "data": "price_usd", render: function ( data, type, row ) {
+                if ( type === 'display' ) {
+                    var numberRenderer = $.fn.dataTable.render.number( ',', '.', 0, '$' ).display;
+                    return numberRenderer( data );
+                }
+                return data;
+            }  },
+                              { "data": "24h_volume_usd",render: function ( data, type, row ) {
+                if ( type === 'display' ) {
+                    var numberRenderer = $.fn.dataTable.render.number( ',', '.', 0, '$' ).display;
+                    return numberRenderer( data );
+                }
+                return data;
+            }  },
+                              { "data": "available_supply"},
+                              { "data": "percent_change_24h", render: function ( data, type, row ) {
+        						return  '<span style="color: red">'+data+'%'+'</span>';
+   							 }},
+                             
+                          ]
+                      } );
+                      table
+                          .on( 'select', function ( e, dt, type, indexes ) {
+                  			var rowData = table.rows( indexes ).data().toArray();
+                          	activaTab('profile');
+                          	reset_text();
+                          	set_text(rowData)
+                          	//Getdetail(rowData[0].symbol,rowData);
+                          	//events.prepend( '<div><b>'+type+' selection</b> - '+JSON.stringify( rowData )+'</div>' );
+                              //var rowData = table.rows( indexes ).data().toArray();
+                              //events.prepend( '<div><b>'+type+' selection</b> - '+JSON.stringify( rowData )+'</div>' );
+                          } )
+                          .on( 'deselect', function ( e, dt, type, indexes ) {
+                             // var rowData = table.rows( indexes ).data().toArray();
+                              //events.prepend( '<div><b>'+type+' <i>de</i>selection</b> - '+JSON.stringify( rowData )+'</div>' );
+                          } );
+                  } );
+         }
+         function search_coin(idcoin)
+         {
+         
+                  $(document).ready(function() {
+                      var table = $('#example').DataTable( {
+                          "ajax": '/cryptocurrencie/getdata',
+                          select: true,
+                          data:{
+                     id: idcoin,
+                     authenticity_token: window._token
+                 	}, success: function (data, text) {
+                       alert(data)
+                      },
+                      error: function (request, status, error) {
+                      alert(request.responseText);
+                      },
+                          "columns": [
+                              { "data": "rank" },
+                              { "data": "name" },
+                              { "data": "market_cap_usd" },
+                              { "data": "price_usd" },
+                              { "data": "price_btc" },
+                              { "data": "24h_volume_usd" },
+                              { "data": "percent_change_24h" },
+                              { "data": "" }
+                          ]
+                      } );
+                      table
+                          .on( 'select', function ( e, dt, type, indexes ) {
+                  			
+                  			var rowData = table.rows( indexes ).data().toArray();
+                          	activaTab('profile');
+                          	//Getdetail(rowData[0].symbol,rowData);
+                          	//events.prepend( '<div><b>'+type+' selection</b> - '+JSON.stringify( rowData )+'</div>' );
+                              //var rowData = table.rows( indexes ).data().toArray();
+                              //events.prepend( '<div><b>'+type+' selection</b> - '+JSON.stringify( rowData )+'</div>' );
+                          } )
+                          .on( 'deselect', function ( e, dt, type, indexes ) {
+                             // var rowData = table.rows( indexes ).data().toArray();
+                              //events.prepend( '<div><b>'+type+' <i>de</i>selection</b> - '+JSON.stringify( rowData )+'</div>' );
+                          } );
+                  } );
+         
+         	}
+
+
+          
+         
+      </script>
+   </body>
+</html>
